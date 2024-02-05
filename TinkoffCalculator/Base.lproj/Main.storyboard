@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -20,7 +21,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="oZM-R1-4Qu">
                                 <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fae-kb-0dj">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="33" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="fae-kb-0dj">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="149.33333333333334"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <nil key="textColor"/>
@@ -40,7 +41,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eip-Jm-tDP"/>
+                                                            <action selector="clearButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="oCH-xz-Gd5"/>
                                                         </connections>
                                                     </button>
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="BN0-e3-Hls">
@@ -197,7 +198,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9w9-xU-UJN"/>
+                                                            <action selector="operationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nf7-S1-XH4"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sIA-tY-VDh">
@@ -208,7 +209,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b1G-gk-ggC"/>
+                                                            <action selector="operationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fde-SW-EUx"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZn-fq-Kg8">
@@ -219,7 +220,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Pfe-zr-2Wb"/>
+                                                            <action selector="operationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="I47-ml-DJQ"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qi6-n0-fco">
@@ -230,7 +231,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3iA-Bd-X2D"/>
+                                                            <action selector="operationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iQy-BD-D54"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N4Y-Ky-JxF">
@@ -241,7 +242,7 @@
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="AOd-pL-mSw"/>
+                                                            <action selector="calculateButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZUO-sq-dOq"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -263,6 +264,9 @@
                             <constraint firstAttribute="bottom" secondItem="oZM-R1-4Qu" secondAttribute="bottom" id="o8u-zc-x6p"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="label" destination="fae-kb-0dj" id="luo-GI-cyo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
