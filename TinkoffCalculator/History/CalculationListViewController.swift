@@ -34,22 +34,15 @@ class CalculationListViewController: UIViewController {
         tableView.dataSource = self
         
         tableView.backgroundColor = UIColor.systemGray5
-        
-        addTableHeaderView()
-        
+        let tableHeaderView = UIView()
+        tableHeaderView.frame = CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 30)
+        tableView.tableHeaderView = tableHeaderView
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
         
         let nib = UINib(nibName: "HistoryTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "HistoryTableViewCell")
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
-    @IBAction func dismissVC(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        
+        calculations.sort { $0.date > $1.date }
     }
     
     private func expressionToString(_ expression: [CalculationHistoryItem]) -> String {
@@ -66,32 +59,12 @@ class CalculationListViewController: UIViewController {
         }
         return result
     }
-    
-    private func addTableHeaderView() {
-        let headerLabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 30))
-        headerLabel.textAlignment = .center
-        headerLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        headerLabel.text = getCurrentDate()
-        
-        tableView.tableHeaderView = headerLabel
-    }
-    
-    private func getCurrentDate() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        return dateFormatter.string(from: Date())
-    }
-    
-    
-    
-    
 }
 
 extension CalculationListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 90
     }
-    
 }
 
 extension CalculationListViewController: UITableViewDataSource {
@@ -105,11 +78,18 @@ extension CalculationListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath) as! HistoryTableViewCell
-        let historyItem = calculations[indexPath.row]
+        let historyItem = calculations[indexPath.section]
+        
         cell.configure(with: expressionToString(historyItem.expression), result: String(historyItem.result))
         
         return cell
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        
+        return formatter.string(from: calculations[section].date as Date)
+    }
     
 }
