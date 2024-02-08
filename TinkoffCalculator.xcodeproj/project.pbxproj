@@ -19,6 +19,7 @@
 		6610B25B2B737A9100847A69 /* CalculationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6610B25A2B737A9100847A69 /* CalculationListViewController.swift */; };
 		6610B25E2B73E65D00847A69 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6610B25D2B73E65D00847A69 /* HistoryTableViewCell.swift */; };
 		6610B2602B73E75700847A69 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6610B25F2B73E75700847A69 /* HistoryTableViewCell.xib */; };
+		6610B2652B74D2C700847A69 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6610B2642B74D2C700847A69 /* Storage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		6610B25A2B737A9100847A69 /* CalculationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationListViewController.swift; sourceTree = "<group>"; };
 		6610B25D2B73E65D00847A69 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		6610B25F2B73E75700847A69 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		6610B2642B74D2C700847A69 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		6610B2292B70001400847A69 /* TinkoffCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				6610B2632B74D27100847A69 /* Storage */,
 				6610B25C2B73E62300847A69 /* History */,
 				6610B22A2B70001400847A69 /* AppDelegate.swift */,
 				6610B22C2B70001400847A69 /* SceneDelegate.swift */,
@@ -142,6 +145,14 @@
 				6610B25F2B73E75700847A69 /* HistoryTableViewCell.xib */,
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		6610B2632B74D27100847A69 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				6610B2642B74D2C700847A69 /* Storage.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -281,6 +292,7 @@
 				6610B22B2B70001400847A69 /* AppDelegate.swift in Sources */,
 				6610B22D2B70001400847A69 /* SceneDelegate.swift in Sources */,
 				6610B25E2B73E65D00847A69 /* HistoryTableViewCell.swift in Sources */,
+				6610B2652B74D2C700847A69 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

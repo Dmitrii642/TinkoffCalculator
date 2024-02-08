@@ -9,7 +9,7 @@ import UIKit
 
 class CalculationListViewController: UIViewController {
     
-    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
+    var calculations: [Calculation] = []
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -96,6 +96,10 @@ extension CalculationListViewController: UITableViewDelegate {
 
 extension CalculationListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return calculations.count
     }
     

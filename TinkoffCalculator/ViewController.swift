@@ -44,7 +44,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     
     var calculationHistory: [CalculationHistoryItem] = []
-    var calculations: [(expression: [CalculationHistoryItem], result: Double)] = []
+    var calculations: [Calculation] = []
+    
+    let calculationHistoryStorage = CalculationHistoryStorage()
     
     lazy var numberFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
@@ -85,6 +87,7 @@ class ViewController: UIViewController {
         
         calculationHistory.append(.number(labelNumber))
         calculationHistory.append(.operation(buttonOperation))
+        
         resetLabelText()
     }
     
@@ -121,7 +124,11 @@ class ViewController: UIViewController {
             let result = try calculate()
             
             label.text = numberFormatter.string(from: NSNumber(value: result))
-            calculations.append((calculationHistory, result))
+            
+            let currentDate = Date()
+            let newCalculation = Calculation(expression: calculationHistory, result: result, date: currentDate)
+            calculations.append(newCalculation)
+            calculationHistoryStorage.setHistory(calculation: calculations)
         } catch {
             label.text = "Error"
         }
@@ -134,6 +141,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         resetLabelText()
+        calculations = calculationHistoryStorage.loadHistory()
     }
     
     func calculate() throws -> Double {
