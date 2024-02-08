@@ -16,6 +16,9 @@
 		6610B2422B70001900847A69 /* TinkoffCalculatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6610B2412B70001900847A69 /* TinkoffCalculatorTests.swift */; };
 		6610B24C2B70001900847A69 /* TinkoffCalculatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6610B24B2B70001900847A69 /* TinkoffCalculatorUITests.swift */; };
 		6610B24E2B70001900847A69 /* TinkoffCalculatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6610B24D2B70001900847A69 /* TinkoffCalculatorUITestsLaunchTests.swift */; };
+		6610B25B2B737A9100847A69 /* CalculationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6610B25A2B737A9100847A69 /* CalculationListViewController.swift */; };
+		6610B25E2B73E65D00847A69 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6610B25D2B73E65D00847A69 /* HistoryTableViewCell.swift */; };
+		6610B2602B73E75700847A69 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6610B25F2B73E75700847A69 /* HistoryTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +52,9 @@
 		6610B2472B70001900847A69 /* TinkoffCalculatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TinkoffCalculatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6610B24B2B70001900847A69 /* TinkoffCalculatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinkoffCalculatorUITests.swift; sourceTree = "<group>"; };
 		6610B24D2B70001900847A69 /* TinkoffCalculatorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TinkoffCalculatorUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		6610B25A2B737A9100847A69 /* CalculationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculationListViewController.swift; sourceTree = "<group>"; };
+		6610B25D2B73E65D00847A69 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		6610B25F2B73E75700847A69 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,7 @@
 		6610B2292B70001400847A69 /* TinkoffCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				6610B25C2B73E62300847A69 /* History */,
 				6610B22A2B70001400847A69 /* AppDelegate.swift */,
 				6610B22C2B70001400847A69 /* SceneDelegate.swift */,
 				6610B22E2B70001400847A69 /* ViewController.swift */,
@@ -125,6 +132,16 @@
 				6610B24D2B70001900847A69 /* TinkoffCalculatorUITestsLaunchTests.swift */,
 			);
 			path = TinkoffCalculatorUITests;
+			sourceTree = "<group>";
+		};
+		6610B25C2B73E62300847A69 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				6610B25A2B737A9100847A69 /* CalculationListViewController.swift */,
+				6610B25D2B73E65D00847A69 /* HistoryTableViewCell.swift */,
+				6610B25F2B73E75700847A69 /* HistoryTableViewCell.xib */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +250,7 @@
 			files = (
 				6610B2372B70001800847A69 /* LaunchScreen.storyboard in Resources */,
 				6610B2342B70001800847A69 /* Assets.xcassets in Resources */,
+				6610B2602B73E75700847A69 /* HistoryTableViewCell.xib in Resources */,
 				6610B2322B70001400847A69 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,9 +276,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6610B25B2B737A9100847A69 /* CalculationListViewController.swift in Sources */,
 				6610B22F2B70001400847A69 /* ViewController.swift in Sources */,
 				6610B22B2B70001400847A69 /* AppDelegate.swift in Sources */,
 				6610B22D2B70001400847A69 /* SceneDelegate.swift in Sources */,
+				6610B25E2B73E65D00847A69 /* HistoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
