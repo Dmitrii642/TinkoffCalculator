@@ -43,6 +43,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var label: UILabel!
     
+    
     var calculationHistory: [CalculationHistoryItem] = []
     var calculations: [Calculation] = []
     
@@ -59,16 +60,22 @@ class ViewController: UIViewController {
     }()
     
     @IBAction func buttonPressed(_ sender: UIButton) {
-        guard 
-            let buttonText = sender.currentTitle else { return }
+        guard let buttonText = sender.currentTitle else { return }
         
         if buttonText == "," && label.text?.contains(",") == true {
             return
         }
-    
         
-        if label.text == "0" {
+        if (label.text == "0" || label.text == "Error") && buttonText != "," {
             label.text = buttonText
+        } else if label.text == "Error" && buttonText == "," {
+            label.text = "0,"
+        } else if buttonText == "π" {
+            guard let text = label.text,
+                  let pi = Int(text) else {
+                return
+            }
+            label.text = calculatePi(number: pi)
         } else {
             label.text?.append(buttonText)
         }
@@ -95,11 +102,6 @@ class ViewController: UIViewController {
         calculationHistory.removeAll()
         
         resetLabelText()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     @IBAction func showCalculationsList(_ sender: Any) {
@@ -140,6 +142,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         resetLabelText()
+//        historyButton.accessibilityIdentifier = "historyButton"
         calculations = calculationHistoryStorage.loadHistory()
     }
     
@@ -156,12 +159,16 @@ class ViewController: UIViewController {
             
             currentResult = try operation.calculate(currentResult, number)
         }
-        
         return currentResult
     }
 
     func resetLabelText() {
         label.text = "0"
+    }
+    
+    func calculatePi(number n: Int) -> String {
+        let π = Double.pi
+        return String(format: "%.\(n)f", π).replacingOccurrences(of: ".", with: ",")
     }
 
 }
