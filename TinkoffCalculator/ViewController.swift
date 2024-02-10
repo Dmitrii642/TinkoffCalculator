@@ -43,11 +43,20 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var label: UILabel!
     
-    
     var calculationHistory: [CalculationHistoryItem] = []
     var calculations: [Calculation] = []
-    
     let calculationHistoryStorage = CalculationHistoryStorage()
+    
+    private let alertView: AlertView = {
+        let screenBounds = UIScreen.main.bounds
+        let alertHeight: CGFloat = 100
+        let alertWidth: CGFloat = screenBounds.width - 40
+        let x: CGFloat = screenBounds.width / 2 - alertWidth / 2
+        let y: CGFloat = screenBounds.height / 2 - alertHeight / 2
+        let alertFrame = CGRect(x: x, y: y, width: alertWidth, height: alertHeight)
+        let alertView = AlertView(frame: alertFrame)
+        return alertView
+    }()
     
     lazy var numberFormatter: NumberFormatter = {
         let numberFormatter = NumberFormatter()
@@ -59,28 +68,49 @@ class ViewController: UIViewController {
         return numberFormatter
     }()
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        resetLabelText()
+        calculations = calculationHistoryStorage.loadHistory()
+        
+        view.addSubview(alertView)
+        alertView.alpha = 0
+        alertView.alertText = "You have found the Easter Egg!"
+    }
+    
     @IBAction func buttonPressed(_ sender: UIButton) {
+        
         guard let buttonText = sender.currentTitle else { return }
         
-        if buttonText == "," && label.text?.contains(",") == true {
-            return
-        }
-        
-        if (label.text == "0" || label.text == "Error") && buttonText != "," {
-            label.text = buttonText
-        } else if label.text == "Error" && buttonText == "," {
+        switch buttonText {
+        case "," where label.text == "0":
             label.text = "0,"
-        } else if buttonText == "π" {
-            guard let text = label.text,
-                  let pi = Int(text) else {
+        case "," where label.text?.contains(",") == true:
+            return
+        case "π":
+            guard let text = label.text, let pi = Int(text), pi > 0 else {
                 return
             }
             label.text = calculatePi(number: pi)
-        } else {
-            label.text?.append(buttonText)
+            
+        default:
+            if label.text == "0" || label.text == "Error" {
+                label.text = buttonText
+            } else {
+                let count = label.text?.filter { $0 != " " }.count ?? 0
+                if count < 15 {
+                    label.text?.append(buttonText)
+                }
+            }
         }
+        
+        if label.text == "3,141592" {
+            animateAlert()
+        }
+        sender.animateTap()
     }
-    
+
     @IBAction func operationButtonPressed(_ sender: UIButton) {
         guard 
             let buttonText = sender.currentTitle,
@@ -132,19 +162,12 @@ class ViewController: UIViewController {
             calculationHistoryStorage.setHistory(calculation: calculations)
         } catch {
             label.text = "Error"
+            label.shake()
         }
+        
         calculationHistory.removeAll()
-        
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        resetLabelText()
-//        historyButton.accessibilityIdentifier = "historyButton"
-        calculations = calculationHistoryStorage.loadHistory()
-    }
     
     func calculate() throws -> Double {
         guard case .number(let firstNumber) = calculationHistory[0] else { return 0 }
@@ -168,8 +191,51 @@ class ViewController: UIViewController {
     
     func calculatePi(number n: Int) -> String {
         let π = Double.pi
-        return String(format: "%.\(n)f", π).replacingOccurrences(of: ".", with: ",")
+        return String(format: "%.\(n)f", π)
     }
 
+    func animateAlert() {
+        if !view.contains(alertView) {
+            alertView.alpha = 0
+            alertView.center = view.center
+            view.addSubview(alertView)
+        }
+        UIView.animateKeyframes(withDuration: 1.0, delay: 0.2) {
+            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5) {
+                self.alertView.alpha = 1
+            }
+        }
+    }
+}
+
+extension UILabel {
+    func shake() {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.05
+        animation.repeatCount = 5
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: center.x - 5, y: center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: center.x, y: center.y))
+        
+        layer.add(animation, forKey: "position")
+    }
+}
+
+extension UIButton {
+    func animateTap() {
+        let scaleAnimation = CAKeyframeAnimation(keyPath: "transform.scale")
+        scaleAnimation.values = [1, 0.98, 1]
+        scaleAnimation.keyTimes = [0, 0.1, 1]
+        
+        let opacityAnimation = CAKeyframeAnimation(keyPath: "opacity")
+        opacityAnimation.values = [0.4, 0.8, 1]
+        opacityAnimation.keyTimes = [0, 0.1, 1]
+        
+        let animationGroup = CAAnimationGroup()
+        animationGroup.duration = 1.5
+        animationGroup.animations = [scaleAnimation, opacityAnimation]
+        
+        layer.add(animationGroup, forKey: "groupAnimation ")
+    }
 }
 
