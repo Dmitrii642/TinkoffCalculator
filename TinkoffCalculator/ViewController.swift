@@ -88,8 +88,21 @@ class ViewController: UIViewController {
             label.text = "0,"
         case "," where label.text?.contains(",") == true:
             return
+        case "+ / -":
+            guard let text = label.text,
+                  text != "0" else {
+                  return
+              }
+              if !text.contains("-") {
+                  label.text = "-" + text
+              } else {
+                  label.text = text.replacingOccurrences(of: "-", with: "")
+              }
+            
         case "π":
-            guard let text = label.text, let pi = Int(text), pi > 0 else {
+            guard let text = label.text,
+                  let pi = Int(text),
+                  pi > 0 else {
                 return
             }
             label.text = calculatePi(number: pi)
