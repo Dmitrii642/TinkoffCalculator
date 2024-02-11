@@ -77,6 +77,7 @@ class ViewController: UIViewController {
         view.addSubview(alertView)
         alertView.alpha = 0
         alertView.alertText = "You have found the Easter Egg!"
+        
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
